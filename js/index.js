@@ -1,15 +1,18 @@
-var canvas=document.getElementById('canvas');
-var context=canvas.getContext('2d');
-var radius=50;
+var canvas = document.getElementById('canvas');
+var context = canvas.getContext('2d');
+var radius = 50;
 var nStartX = 0;
 var nStartY = 0;
 var bIsDrawing = false;
-var putPoint = function(e){
-  nStartX = e.clientX;nStartY = e.clientY;
+
+var putPoint = function(e) {
+  nStartX = e.clientX;
+  nStartY = e.clientY;
   bIsDrawing = true;
   radius = 0;
 }
-var drawPoint = function(e){
+
+var drawPoint = function(e) {
   if(!bIsDrawing)
     return;
   var nDeltaX = nStartX - e.clientX;
@@ -19,10 +22,13 @@ var drawPoint = function(e){
   context.beginPath();
   context.arc(nStartX, nStartY, radius, 0, Math.PI*2);
   context.fill();
+  context.fillStyle = 'blue';
 }
-var stopPoint = function(e){
+
+var stopPoint = function(e) {
   bIsDrawing = false;
 }
+
 canvas.addEventListener('mousedown',putPoint);
 canvas.addEventListener('mousemove',drawPoint);
 canvas.addEventListener('mouseup',stopPoint);
